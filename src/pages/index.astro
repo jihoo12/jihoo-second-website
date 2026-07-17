@@ -1,0 +1,302 @@
+---
+import mascotImg from '../assets/jihoo-no-bg.png';
+
+const quips = [
+  "psst... rust > everything, don't @ me",
+  "have you tried NixOS btw",
+  "compilers are just legally-approved dark magic",
+  "the ai agent wrote this line, not me",
+  "niri gapless tiling supremacy",
+  "borrow checker said no. i said please.",
+  "segfault? never heard of her",
+  "noctalia shell looking clean today",
+  "rewrite it in rust",
+];
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>jihoo — rust, compilers, nixos</title>
+  <meta name="description" content="Jihoo's corner of the internet — Rust, compilers, operating systems, and a NixOS + niri + noctalia setup." />
+    <link rel="icon" type="image/png" href="/jihoo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <main class="wrap">
+    <header class="hero">
+      <p class="crt-line">jihoo<span class="dim">@</span>nixos<span class="accent">:~$</span> <span class="caret">▍</span></p>
+      <h1>Hi, I'm <span class="accent">Jihoo</span>.</h1>
+      <p class="tagline">Rust by default. Compilers and operating systems by obsession.</p>
+    </header>
+
+    <section class="bio">
+      <p>I'm <span class="accent">Jihoo</span> — a programmer who lives and breathes systems-level code. My main languages are <span class="accent">Rust</span>, <span class="accent">C++</span>, <span class="accent">C</span>, and <span class="accent">Astro</span>, and I'm happiest when I'm deep in a compiler or poking around inside an operating system kernel. You can find me on <a class="link" href="https://github.com/jihoo12" target="_blank" rel="noopener noreferrer">GitHub</a>.</p>
+      <p>My day-to-day machines both run <span class="accent">NixOS</span> with <span class="accent">niri</span> and <span class="accent">noctalia shell</span> — laptop and desktop, same setup. Nix is more than a package manager to me; it's how I think about reproducibility and system design. Beyond that, I'm fascinated by <span class="accent">compilers</span> and language implementation, <span class="accent">AI agents</span> and how they're reshaping the way we write software, <span class="accent">Lisp</span> and its family of languages, and <span class="accent">Cubical type theory</span> — which sits at this beautiful intersection of type theory, homotopy theory, and constructive mathematics that I find endlessly compelling.</p>
+      <p>I reach for an AI agent constantly while coding, the borrow checker and I have a love-hate relationship, and I'd rather rewrite it in Rust than not. Segfaults? Never heard of her.</p>
+      <p>One project I'm particularly proud of is <a class="link" href="https://github.com/hokkaido-lang/hokkaido" target="_blank" rel="noopener noreferrer">Hokkaido</a> — a programming language with a cubical type theory backend. That backend started as a Haskell implementation in <a class="link" href="https://github.com/jihoo12/octo" target="_blank" rel="noopener noreferrer">Octo</a>, was migrated to Rust in <a class="link" href="https://github.com/jihoo12/pi-lisp" target="_blank" rel="noopener noreferrer">pi-lisp</a> where it saw serious improvements, and is now being used by Hokkaido — which has taken that cubical backend and further refined it for their own needs. Recently I've also been diving into web development, which led to <a class="link" href="https://github.com/hokkaido-lang/hokkaido/tree/main/sapporo" target="_blank" rel="noopener noreferrer">Sapporo</a>, a web-based playground for Hokkaido.</p>
+      <p>On the OS side, I'm building <a class="link" href="https://github.com/jihoo12/kaguyaos" target="_blank" rel="noopener noreferrer">KaguyaOS</a> — because apparently I can't stay away from systems that sit this close to the metal.</p>
+    </section>
+
+    <footer class="foot">
+      <p class="crt-line dim">jihoo@nixos<span class="accent">:~$</span> <span class="caret">▍</span></p>
+    </footer>
+  </main>
+
+  <div id="mascot" class="mascot" role="button" tabindex="0" aria-label="A small penguin-jacket character. Click before it runs off.">
+    <div id="mascot-bubble" class="bubble"></div>
+    <img src={mascotImg.src} alt="" draggable="false" />
+  </div>
+
+  <script define:vars={{ quips }}>
+    const mascot = document.getElementById('mascot');
+    const bubble = document.getElementById('mascot-bubble');
+    const img = mascot.querySelector('img');
+
+    let retreatTimer = null;
+    let hasFled = false;
+
+    function rand(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+
+    function pickQuip() {
+      return quips[Math.floor(Math.random() * quips.length)];
+    }
+
+    function reset(instant) {
+      mascot.style.transition = instant ? 'none' : '';
+      mascot.style.opacity = '0';
+      mascot.style.pointerEvents = 'none';
+      mascot.style.right = '-180px';
+    }
+
+    function scheduleNext(delayMs) {
+      clearTimeout(retreatTimer);
+      const delay = delayMs !== undefined ? delayMs : rand(9000, 22000);
+      setTimeout(popIn, delay);
+    }
+
+    function popIn() {
+      reset(true);
+      void mascot.offsetWidth;
+
+      mascot.style.transition =
+        'right .6s cubic-bezier(.34,1.56,.64,1), opacity .3s ease';
+      bubble.textContent = pickQuip();
+
+      requestAnimationFrame(() => {
+        mascot.style.opacity = '1';
+        mascot.style.pointerEvents = 'auto';
+        mascot.style.right = '14px';
+        bubble.classList.add('show');
+      });
+
+      retreatTimer = setTimeout(() => retreat(), rand(3800, 5200));
+    }
+
+    function retreat() {
+      bubble.classList.remove('show');
+      mascot.style.transition =
+        'right .5s ease-in, opacity .5s ease';
+      mascot.style.right = '-180px';
+      mascot.style.opacity = '0';
+      setTimeout(() => {
+        mascot.style.pointerEvents = 'none';
+        scheduleNext();
+      }, 550);
+    }
+
+    function flee() {
+      clearTimeout(retreatTimer);
+      bubble.classList.remove('show');
+      mascot.style.transition =
+        'right .7s cubic-bezier(.55,-0.4,.7,.3), opacity .6s ease .1s';
+      mascot.style.right = 'calc(100vw + 40px)';
+      mascot.style.opacity = '0';
+      hasFled = true;
+      setTimeout(() => {
+        mascot.style.pointerEvents = 'none';
+        reset(true);
+        void mascot.offsetWidth;
+        scheduleNext(hasFled ? rand(14000, 30000) : undefined);
+      }, 750);
+    }
+
+    mascot.addEventListener('click', flee);
+    mascot.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        flee();
+      }
+    });
+
+    reset(true);
+    scheduleNext(rand(2500, 6000));
+  </script>
+
+  <style>
+    :root {
+      --bg: #100f0c;
+      --panel: #1a1812;
+      --panel-2: #211f17;
+      --border: #362f1f;
+      --text: #e9e2cf;
+      --dim: #938d78;
+      --rust: #cc7a3c;
+      --olive: #7c8462;
+      --blue: #6688b5;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'IBM Plex Mono', monospace;
+      overflow-x: hidden;
+    }
+
+    body {
+      background-image:
+        radial-gradient(circle at 15% 0%, rgba(204,122,60,0.06), transparent 40%),
+        radial-gradient(circle at 85% 20%, rgba(102,136,181,0.05), transparent 45%);
+      min-height: 100vh;
+    }
+
+    .wrap {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 64px 24px 40px;
+    }
+
+    .hero { margin-bottom: 48px; }
+
+    .crt-line {
+      font-size: 0.9rem;
+      color: var(--dim);
+      margin: 0 0 18px;
+      letter-spacing: 0.02em;
+    }
+    .crt-line.dim { margin-top: 0; }
+
+    .caret {
+      display: inline-block;
+      color: var(--rust);
+      animation: blink 1.1s steps(1) infinite;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    h1 {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 800;
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      line-height: 1.05;
+      margin: 0 0 14px;
+      letter-spacing: -0.01em;
+    }
+
+    .accent { color: var(--rust); }
+
+    .tagline {
+      color: var(--dim);
+      font-size: 1.05rem;
+      margin: 0;
+      max-width: 46ch;
+    }
+
+    .bio {
+      max-width: 60ch;
+      line-height: 1.8;
+      font-size: 1.05rem;
+      color: var(--text);
+      margin-bottom: 32px;
+    }
+
+    .bio p { margin: 0 0 16px; }
+
+    .link {
+      color: var(--rust);
+      text-decoration: none;
+      border-bottom: 1px dashed var(--rust);
+    }
+    .link:hover { color: var(--text); border-bottom-color: var(--text); }
+
+    .foot { margin-top: 36px; }
+
+    /* mascot easter egg */
+    .mascot {
+      position: fixed;
+      bottom: 0;
+      width: 150px;
+      z-index: 200;
+      opacity: 0;
+      cursor: pointer;
+      pointer-events: none;
+      animation: bob 2.4s ease-in-out infinite;
+    }
+
+    .mascot img {
+      display: block;
+      width: 100%;
+      height: auto;
+      filter: drop-shadow(0 14px 16px rgba(0,0,0,0.45));
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    @keyframes bob {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    .bubble {
+      position: absolute;
+      top: -6px;
+      left: 50%;
+      transform: translate(-50%, -100%);
+      background: var(--panel);
+      border: 1px solid var(--rust);
+      color: var(--text);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.78rem;
+      line-height: 1.4;
+      padding: 8px 10px;
+      border-radius: 8px;
+      width: 190px;
+      max-width: 58vw;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+      pointer-events: none;
+    }
+
+    .bubble.show { opacity: 1; }
+
+    .bubble::after {
+      content: "";
+      position: absolute;
+      bottom: -6px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 10px;
+      height: 10px;
+      background: var(--panel);
+      border-right: 1px solid var(--rust);
+      border-bottom: 1px solid var(--rust);
+      rotate: 45deg;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .mascot { animation: none; }
+      .mascot, .bubble { transition: opacity .3s ease !important; }
+    }
+  </style>
+</body>
+</html>
