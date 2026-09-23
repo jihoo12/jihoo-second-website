@@ -1,0 +1,17 @@
+---
+const title = "Kamo — Cartesian cubical proof assistant in Rust";
+const description = "Kamo is Jihoo's experimental Cartesian cubical proof-assistant kernel in Rust, with explicit S-expressions, checked univalence examples, resource limits, and a small library API.";
+const canonical = "https://jihoo.pages.dev/projects/kamo/";
+const repoUrl = "https://github.com/jihoo12/kamo";
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareSourceCode",
+  name: "Kamo",
+  description,
+  codeRepository: repoUrl,
+  programmingLanguage: "Rust",
+  author: { "@type": "Person", name: "Jihoo", url: "https://github.com/jihoo12" }
+};
+---
+<!doctype html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width"/><title>{title}</title><meta name="description" content={description}/><link rel="canonical" href={canonical}/><meta property="og:type" content="website"/><meta property="og:title" content={title}/><meta property="og:description" content={description}/><meta property="og:url" content={canonical}/><meta name="twitter:card" content="summary"/><script type="application/ld+json" set:html={JSON.stringify(jsonLd)} /></head>
+<body><main><a href="/">← jihoo.dev</a><p class="kicker">PROOF ASSISTANT · RUST</p><h1>Kamo</h1><p class="lead">An experimental Cartesian cubical proof-assistant kernel written in Rust.</p><h2>What it explores</h2><p>Kamo is a small kernel built around safe indexed arenas and explicit S-expressions. Its examples include checked definitions of equivalences, <code>ua</code>, identity and Boolean-negation equivalences, and a full univalence theorem.</p><h2>Implementation</h2><p>The checker deliberately keeps its trusted surface understandable: definitions are ordered and explicit, universe levels are explicit, and the public Rust API exposes checked programs rather than unchecked evaluator entry points. Resource limits bound parsing, evaluation, arena nodes, face solving, and quotation.</p><h2>Why I find it interesting</h2><p>Kamo sits exactly where several of my interests meet: programming-language implementation, proof assistants, cubical type theory, and the practical engineering needed to turn mathematical reduction rules into a usable kernel.</p><p><a class="repo" href={repoUrl}>View Kamo on GitHub ↗</a></p></main><style is:global>:root{--bg:#faf5ea;--text:#2c2a25;--dim:#756e60;--accent:#e2692f;--border:#e7d7bc}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;line-height:1.75}main{max-width:760px;margin:auto;padding:64px 24px 80px}a{color:#3b7dc9}h1,h2{line-height:1.15}h1{font-size:clamp(2.5rem,8vw,4.5rem);margin:.1em 0 .25em}h2{margin-top:2.2em}.kicker{margin-top:4em;color:var(--accent);font-size:.75rem;font-weight:700;letter-spacing:.14em}.lead{font-size:1.2rem;color:var(--dim);max-width:58ch}.repo{display:inline-block;margin-top:1.5em;padding:.65em .9em;border:1px solid var(--border);border-radius:8px;text-decoration:none;background:#fff}</style></body></html>
