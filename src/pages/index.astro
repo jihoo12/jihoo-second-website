@@ -54,6 +54,20 @@ const projects = [
   <meta name="google-site-verification" content="-XugzPp_Zk_0xP3B20_EYYY-9wI07ZA4CFNkDe27ITY" />
   <title>jihoo — systems, type theory, weird desktops</title>
   <meta name="description" content="Jihoo's corner of the internet — Rust, operating systems, proof assistants, Wayland experiments, compilers, and NixOS." />
+  <link rel="canonical" href="https://jihoo12.github.io/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="jihoo — systems, type theory, weird desktops" />
+  <meta property="og:description" content="Rust, operating systems, proof assistants, Wayland experiments, compilers, and NixOS." />
+  <meta property="og:url" content="https://jihoo12.github.io/" />
+  <meta name="twitter:card" content="summary" />
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Jihoo",
+    url: "https://jihoo12.github.io/",
+    sameAs: ["https://github.com/jihoo12"],
+    knowsAbout: ["Rust", "Operating systems", "Compilers", "Cubical type theory", "Wayland", "NixOS"]
+  })} />
   <link rel="icon" type="image/png" href="/jihoo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -89,7 +103,7 @@ const projects = [
 
       <div class="project-grid">
         {projects.map((project) => (
-          <a class="project-card" href={project.href} target="_blank" rel="noopener noreferrer">
+          <a class="project-card" href={"/projects/" + project.href.split("/").pop() + "/"}>
             <div class="project-topline">
               <span class:list={["project-dot", project.tone]} aria-hidden="true"></span>
               <span>{project.eyebrow}</span>
