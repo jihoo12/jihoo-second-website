@@ -1,0 +1,68 @@
+---
+const title = "Gigantomachia — code-first 3D engine in Rust";
+const description = "Gigantomachia is Jihoo's experimental Rust 3D engine using wgpu and WGSL, currently focused on real-time ocean rendering with Gerstner waves, analytic normals, procedural sky reflections, Fresnel reflectance, and sunlight highlights.";
+const canonical = "https://jihoo.pages.dev/projects/Gigantomachia/";
+const repoUrl = "https://github.com/jihoo12/Gigantomachia";
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareSourceCode",
+  name: "Gigantomachia",
+  description,
+  codeRepository: repoUrl,
+  programmingLanguage: "Rust",
+  runtimePlatform: "Linux",
+  author: { "@type": "Person", name: "Jihoo", url: "https://github.com/jihoo12" }
+};
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width"/>
+  <title>{title}</title>
+  <meta name="description" content={description}/>
+  <link rel="canonical" href={canonical}/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content={title}/>
+  <meta property="og:description" content={description}/>
+  <meta property="og:url" content={canonical}/>
+  <meta name="twitter:card" content="summary"/>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+</head>
+<body>
+  <main>
+    <a href="/">← jihoo.dev</a>
+    <p class="kicker">3D ENGINE · RUST + WGPU</p>
+    <h1>Gigantomachia</h1>
+    <p class="lead">A small code-first 3D engine experiment whose first milestone is a navigable, real-time ocean.</p>
+
+    <h2>Real-time water first</h2>
+    <p>The current renderer builds the ocean from Gerstner waves and computes analytic normals for lighting. The water pass combines procedural sky reflections, Fresnel reflectance, and sunlight highlights, while a fly camera lets you move around above the surface.</p>
+
+    <h2>Engine stack</h2>
+    <p>The engine and demos are written in <code>Rust</code>. Rendering uses <code>wgpu</code> with <code>WGSL</code> shaders, while <code>winit</code> handles window lifecycle and input and <code>glam</code> handles camera and vector math. The initial Linux path targets Vulkan, and a Nix flake pins the development environment.</p>
+
+    <h2>Code-first workflow</h2>
+    <p>Gigantomachia intentionally avoids a GUI editor. The project is structured around code, small demos, reproducible builds, and validation commands such as <code>cargo check</code>, <code>clippy</code>, tests, and headless rendering. It can also capture a water frame without a display server.</p>
+
+    <h2>Where it is going</h2>
+    <p>The first milestone is deliberately narrow: camera, meshes, materials, and water rendering before broader engine features. ECS and asset loading are future work, with the goal of keeping the runtime structure small enough to understand while measuring performance with concrete demos.</p>
+
+    <p><a class="repo" href={repoUrl}>View Gigantomachia on GitHub ↗</a></p>
+  </main>
+
+  <style is:global>
+    :root{--bg:#faf5ea;--text:#2c2a25;--dim:#756e60;--accent:#3b7dc9;--border:#e7d7bc}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;line-height:1.75}
+    main{max-width:760px;margin:auto;padding:64px 24px 80px}
+    a{color:#3b7dc9}
+    h1,h2{line-height:1.15}
+    h1{font-size:clamp(2.5rem,8vw,4.5rem);margin:.1em 0 .25em}
+    h2{margin-top:2.2em}
+    .kicker{margin-top:4em;color:var(--accent);font-size:.75rem;font-weight:700;letter-spacing:.14em}
+    .lead{font-size:1.2rem;color:var(--dim);max-width:58ch}
+    .repo{display:inline-block;margin-top:1.5em;padding:.65em .9em;border:1px solid var(--border);border-radius:8px;text-decoration:none;background:#fff}
+  </style>
+</body>
+</html>
