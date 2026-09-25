@@ -44,6 +44,15 @@ const projects = [
     tags: ["Wayland", "wlroots", "GLES2"],
     tone: "c5",
   },
+  {
+    name: "Gigantomachia",
+    href: "https://github.com/jihoo12/Gigantomachia",
+    eyebrow: "3D engine · Rust + wgpu",
+    description:
+      "A code-first 3D engine experiment focused on real-time ocean rendering with Gerstner waves, analytic normals, procedural sky reflections, Fresnel reflectance, and sunlight highlights.",
+    tags: ["wgpu", "WGSL", "rendering"],
+    tone: "c3",
+  },
 ];
 ---
 <!doctype html>
@@ -53,11 +62,11 @@ const projects = [
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="google-site-verification" content="-XugzPp_Zk_0xP3B20_EYYY-9wI07ZA4CFNkDe27ITY" />
   <title>jihoo — systems, type theory, weird desktops</title>
-  <meta name="description" content="Jihoo's corner of the internet — Rust, operating systems, proof assistants, Wayland experiments, compilers, and NixOS." />
+  <meta name="description" content="Jihoo's corner of the internet — Rust, operating systems, proof assistants, Wayland experiments, real-time rendering, compilers, and NixOS." />
   <link rel="canonical" href="https://jihoo.pages.dev/" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="jihoo — systems, type theory, weird desktops" />
-  <meta property="og:description" content="Rust, operating systems, proof assistants, Wayland experiments, compilers, and NixOS." />
+  <meta property="og:description" content="Rust, operating systems, proof assistants, Wayland experiments, real-time rendering, compilers, and NixOS." />
   <meta property="og:url" content="https://jihoo.pages.dev/" />
   <meta name="twitter:card" content="summary" />
   <script type="application/ld+json" set:html={JSON.stringify({
@@ -66,7 +75,7 @@ const projects = [
     name: "Jihoo",
     url: "https://jihoo.pages.dev/",
     sameAs: ["https://github.com/jihoo12"],
-    knowsAbout: ["Rust", "Operating systems", "Compilers", "Cubical type theory", "Wayland", "NixOS"]
+    knowsAbout: ["Rust", "Operating systems", "Compilers", "Cubical type theory", "Wayland", "Real-time rendering", "NixOS"]
   })} />
   <link rel="icon" type="image/png" href="/jihoo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -78,7 +87,7 @@ const projects = [
     <header class="hero">
       <p class="crt-line">jihoo<span class="dim">@</span>dev<span class="accent">:~$</span> <span class="caret">▍</span></p>
       <h1>Hi, I'm <span class="accent c1">Jihoo</span>.</h1>
-      <p class="tagline">Systems code, type theory, and interfaces that probably should not exist.</p>
+      <p class="tagline">Systems code, type theory, real-time rendering, and interfaces that probably should not exist.</p>
       <nav class="jump" aria-label="Page links">
         <a href="#about">about</a>
         <span>/</span>
@@ -89,16 +98,16 @@ const projects = [
     </header>
 
     <section class="bio" id="about">
-      <p>I'm <span class="accent c2">Jihoo</span> — an undergraduate who lives and breathes systems-level code. I mostly work in <span class="accent c3">Rust</span>, <span class="accent c4">C++</span>, and <span class="accent c5">C</span>, and I'm happiest when I'm building kernels, language tooling, or strange low-level experiments.</p>
-      <p>My day-to-day setup is <span class="accent c2">NixOS</span> on both desktop and laptop. Nix is more than a package manager to me; it's how I think about reproducibility and system design. I'm also fascinated by <span class="accent c1">compilers</span>, <span class="accent c2">AI agents</span>, <span class="accent c3">Lisp</span>, and <span class="accent c4">cubical type theory</span> — especially the point where type theory, homotopy, and implementation details collide.</p>
-      <p>I reach for an AI agent constantly while coding. Somewhere nearby there is usually a HoTT, cubical type theory, or category theory PDF that I am definitely about to read.</p>
+      <p>I'm <span class="accent c2">Jihoo</span> — an undergraduate who lives and breathes systems-level code. I mostly work in <span class="accent c3">Rust</span>, <span class="accent c4">C++</span>, and <span class="accent c5">C</span>, and I'm happiest when I'm building kernels, language tooling, graphics code, or strange low-level experiments.</p>
+      <p>My day-to-day setup is <span class="accent c2">NixOS</span> on both desktop and laptop. Nix is more than a package manager to me; it's how I think about reproducibility and system design. I'm also fascinated by <span class="accent c1">compilers</span>, <span class="accent c2">AI agents</span>, <span class="accent c3">Lisp</span>, <span class="accent c4">cubical type theory</span>, and <span class="accent c5">real-time graphics</span>.</p>
+      <p>I reach for an AI agent constantly while coding. Somewhere nearby there is usually a HoTT, cubical type theory, category theory, or graphics PDF that I am definitely about to read.</p>
     </section>
 
     <section class="projects" id="projects">
       <div class="section-head">
         <p class="section-kicker">selected work</p>
         <h2>Things I'm building</h2>
-        <p>Three projects that best describe what I'm currently curious about.</p>
+        <p>Four projects that best describe what I'm currently curious about.</p>
       </div>
 
       <div class="project-grid">
@@ -255,7 +264,7 @@ const projects = [
     }
 
     .wrap {
-      max-width: 860px;
+      max-width: 980px;
       margin: 0 auto;
       padding: 64px 24px 40px;
     }
@@ -385,7 +394,7 @@ const projects = [
 
     .project-grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 14px;
     }
 
